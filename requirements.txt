@@ -1,0 +1,7 @@
+# Step 0 — foundation. Each later step appends the packages it needs.
+fastapi==0.136.1
+uvicorn[standard]==0.46.0
+python-dotenv==1.2.2
+requests==2.33.1
+pydantic==2.13.4
+logfire[fastapi,requests]==4.32.1
