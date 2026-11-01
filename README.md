@@ -15,6 +15,12 @@ The sample knowledge base is a short **Unity 3D engine** primer plus a deliberat
 | **Interfaces** | FastAPI backend, Streamlit chat UI, Streamlit eval dashboard |
 | **Deploy** | Dockerfile for the API (Cloud Run-ready); the UI can run on Streamlit Community Cloud |
 
+### See it in action
+
+![AdvancedRAG Streamlit chat UI: a greeting answered by the guardrails, a grounded answer about what Unity can do, and an off-topic request for AI news declined](ui/final_output/chat_ui_demo.png)
+
+*The Streamlit chat UI. In one conversation: a greeting answered directly by the guardrails, a technical question ("what unity can do?") answered from the retrieved Unity document, and an off-topic request ("top 3 AI news of last 24 hours") declined by the guardrails before any retrieval.*
+
 ---
 
 ## Contents
@@ -114,7 +120,8 @@ Sub-folders map to a `source_type`: a folder name containing `true` → `true`, 
 ├── ui/
 │   ├── app.py                     # Streamlit chat UI (local)
 │   ├── st_cloud_ui.py             # Same UI for Streamlit Community Cloud
-│   └── requirements.txt           # Slim deps for the cloud UI
+│   ├── requirements.txt           # Slim deps for the cloud UI
+│   └── final_output/              # Reference screenshot of the UI (shown at the top of this README)
 ├── evals/
 │   ├── app.py                     # Streamlit eval dashboard (3 steps)
 │   ├── pipeline.py                # Sends golden questions to the live API
