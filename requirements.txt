@@ -23,3 +23,10 @@ FlashRank==0.2.10
 litellm==1.106.6
 orjson==3.13.0
 soundfile==0.14.0
+
+# Step 4 — agent
+langgraph==1.2.18
+
+# Step 5 — guardrails (langchain-google-vertexai is a required shim for a NeMo internal import; no GCP credentials needed)
+nemoguardrails==0.24.1
+langchain-google-vertexai==3.2.5
