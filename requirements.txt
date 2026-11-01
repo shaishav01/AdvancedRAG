@@ -4,7 +4,6 @@ uvicorn[standard]==0.46.0
 python-dotenv==1.2.2
 requests==2.33.1
 pydantic==2.13.4
-logfire[fastapi,requests]==4.41.0
 
 # Step 1 — ingestion
 qdrant-client==1.20.0
@@ -30,3 +29,17 @@ langgraph==1.2.18
 # Step 5 — guardrails (langchain-google-vertexai is a required shim for a NeMo internal import; no GCP credentials needed)
 nemoguardrails==0.24.1
 langchain-google-vertexai==3.2.5
+
+# Step 6 — observability
+logfire[fastapi,requests]==4.41.0
+
+# Step 7 — Streamlit chat UI
+streamlit==1.66.1
+
+# Step 8 — evals (sentence-transformers pulls PyTorch: large install; only needed for evals, not for the API)
+ragas==0.4.3
+langchain-community==0.4.1   # ragas 0.4.3 imports langchain_community.chat_models.vertexai, removed in 0.4.2
+openai==2.54.0
+nest-asyncio==1.6.0
+pandas==3.1.0
+sentence-transformers==6.2.0
