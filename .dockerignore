@@ -1,0 +1,53 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.installed.cfg
+build/
+dist/
+wheels/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment & secrets (never baked into an image)
+.env
+.env.*
+!.env.example
+commands.md
+
+# Git & IDE
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Local tooling / observability state
+.logfire/
+.claude/
+.agents/
+
+# Data — not part of the runtime image
+DATA/
+processed_data/
+
+# Eval suite, UI and notebooks run locally only
+evals/
+ui/
+.streamlit/
+notebooks/
+docs/
+
+# Local-only requirements and docs
+requirements.txt
+README.md
+
+# OS
+.DS_Store
+Thumbs.db
+*.log

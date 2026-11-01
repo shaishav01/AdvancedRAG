@@ -1,0 +1,7 @@
+# Streamlit Community Cloud — frontend only (entrypoint: ui/st_cloud_ui.py).
+# Community Cloud reads the requirements file next to the entrypoint before the root one,
+# so the UI does not install the backend/evals stack (PyTorch, NeMo, RAGAS).
+# Keep versions in sync with requirements.txt whenever you bump one.
+streamlit==1.66.1
+requests==2.33.1
+logfire[requests]==4.41.0

@@ -1,3 +1,4 @@
+import os
 import time
 import logfire
 from flashrank import Ranker, RerankRequest
@@ -15,8 +16,9 @@ def _get_ranker() -> Ranker:
     if _ranker is None:
         logfire.info("🧠 Initializing FlashRank Model (TinyBERT) locally...")
         try:
-            # We use a specific cache directory to avoid permission issues in production
-            _ranker = Ranker(cache_dir="/tmp/flashrank")
+            # Cache dir is configurable: the Docker image pre-bakes the model into /opt/flashrank (FLASHRANK_CACHE_DIR);
+            # locally/elsewhere it falls back to /tmp, which is always writable.
+            _ranker = Ranker(cache_dir=os.getenv("FLASHRANK_CACHE_DIR", "/tmp/flashrank"))
         except Exception:
             _ranker = Ranker()
     return _ranker

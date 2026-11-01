@@ -50,3 +50,8 @@ commands.md
 
 # Logs
 *.log
+# Local AI-tooling skill links
+.agents/
+
+# Streamlit secrets (template is .streamlit/secrets.toml.example)
+.streamlit/secrets.toml

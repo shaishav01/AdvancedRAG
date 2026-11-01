@@ -1,0 +1,55 @@
+# Controls what is uploaded to Cloud Build (source tarball).
+# The image needs only: Dockerfile, requirements-prod.txt and app/.
+.gcloudignore
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+build/
+dist/
+wheels/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets
+.env
+.env.*
+!.env.example
+commands.md
+
+# Git & IDE
+.git/
+.gitignore
+.dockerignore
+.vscode/
+.idea/
+
+# Local tooling / observability state
+.logfire/
+.claude/
+.agents/
+
+# Data
+DATA/
+processed_data/
+
+# Local-only code and docs
+evals/
+ui/
+.streamlit/
+notebooks/
+docs/
+README.md
+requirements.txt
+
+# OS
+.DS_Store
+Thumbs.db
+*.log

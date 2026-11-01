@@ -1,0 +1,35 @@
+# ==============================================================================
+# PRODUCTION REQUIREMENTS — API container only (Cloud Run).
+# Same pins as requirements.txt, minus what the running API never imports:
+#   ingestion parsers (pypdf, pdfplumber, bs4, python-docx, python-pptx, unstructured),
+#   the Streamlit UI, and the eval suite (ragas, pandas, nest-asyncio, sentence-transformers/PyTorch).
+# Keep versions in sync with requirements.txt whenever you bump one.
+# ==============================================================================
+
+# --- CORE API ---
+fastapi==0.136.1
+uvicorn[standard]==0.46.0
+python-dotenv==1.2.2
+requests==2.33.1
+pydantic==2.13.4
+
+# --- OBSERVABILITY ---
+logfire[fastapi,requests]==4.41.0
+
+# --- VECTOR DB & RETRIEVAL ---
+qdrant-client==1.20.0
+FlashRank==0.2.10
+
+# --- AGENT ---
+langgraph==1.2.18
+
+# --- GUARDRAILS ---
+nemoguardrails==0.24.1
+langchain-google-vertexai==3.2.5      # required shim for a NeMo internal import (no GCP credentials needed)
+langchain-community==0.4.1
+
+# --- GEMINI + LLM GATEWAY ---
+langchain-google-genai==4.4.2
+litellm==1.106.6
+orjson==3.13.0
+soundfile==0.14.0

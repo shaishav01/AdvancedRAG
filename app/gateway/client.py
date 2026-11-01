@@ -4,12 +4,16 @@ LLM gateway — LiteLLM Router running in-process (no proxy server, no hosted co
 Provides:
   - model fallback: primary Gemini model -> fallback Gemini model
   - retries with backoff on rate-limit / server errors, and cooldown of failing deployments
+  - per-call timeout (LLM_TIMEOUT_S): a hung model fails over instead of blocking the request; timeouts are not retried
   - in-memory response cache (resets on restart; use Redis for anything long-lived)
 
 Free-tier quotas are per project and per model, so the fallback is a *different* model.
 Model IDs come from env (see app/config.py) and are placeholders — confirm them in AI Studio.
 """
+import os
+
 from litellm import Router
+from litellm.types.router import RetryPolicy
 from litellm.types.utils import ModelResponse
 
 from app.config import settings
@@ -32,7 +36,15 @@ router = Router(
         },
     ],
     fallbacks=[{"rag-primary": ["rag-fallback"]}],
+    timeout=float(os.getenv("LLM_TIMEOUT_S", "30")),
     num_retries=2,
+    # Retrying a timed-out model only multiplies the wait; go straight to the fallback instead.
+    retry_policy=RetryPolicy(
+        TimeoutErrorRetries=0,
+        RateLimitErrorRetries=2,
+        InternalServerErrorRetries=2,
+        ServiceUnavailableErrorRetries=2,
+    ),
     allowed_fails=3,
     cooldown_time=30,
     cache_responses=True,
